@@ -1,9 +1,10 @@
+======
+README
+======
 
 The purpose of this library is to build and test the central building blocks needed for making Hexagonal Grids.
 
 No UI implementations are done, everything strictly deals in the math-space.
-
-https://codeberg.org/ldesousa/hex-utils/src/branch/develop/hex_utils
 
 Advice
 ======
@@ -25,13 +26,14 @@ Geometry:
    - Hexagons
 
 Coordinates:
-   - Offset
-   - Axial
    - Cube
-
+   - Offset
 
 Misc
 ====
 
 This library is more concerned with the raw math of grid needs, so some things that might be needed for UI are ignored.
 
+Like most hex-based systems, much appreciation is given to Red Blob Games.
+
+https://www.redblobgames.com
