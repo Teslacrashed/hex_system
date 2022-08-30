@@ -1,0 +1,118 @@
+# vim: set ft=dosini
+# .editorconfig
+# https://editorconfig.org
+#------------------------------------------------------------------------------#
+# OPTIONS:
+# root                     = true/false
+# charset                  = latin1/utf-8/utf8-bom/utf-16be/utf-16le
+# end_of_line              = lf/cr/crlf
+# indent_size              = uint
+# indent_style             = tab/space
+# insert_final_newline     = true/false
+# tab_width                = indent_size/uint
+# trim_trailing_whitespace = true/false
+#------------------------------------------------------------------------------#
+
+#------------------------------------------------------------------------------#
+# General Settings
+#------------------------------------------------------------------------------#
+root = true
+
+# Unix-style newlines with a newline ending every file
+# Indent style (spaces/tabs) should be set per filetype
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+#------------------------------------------------------------------------------#
+# File Extension Settings
+#------------------------------------------------------------------------------#
+# Text :: Data :: INI
+[*.{cfg,ini}]
+indent_size = 2
+indent_style = tab
+tab_width = 2
+
+# Text :: Data :: INI
+[.{flake8,pylintc}]
+indent_size = 2
+indent_style = tab
+tab_width = 2
+
+# Text :: Data :: INI :: TOML
+[*.{tml,toml}]
+indent_size = 2
+indent_style = tab
+tab_width = 2
+
+# Text :: Data :: Tabular
+[*.{csv,tsv}]
+indent_size = 4
+indent_style = tab
+insert_final_newline = false
+tab_width = 4
+
+# Text :: Data :: Serialized
+# NOTE: May need to add `trim_trailing_whitespace = false` for some content (Markdown)
+[*.{json,yaml,yml,xml}]
+indent_size = 2
+indent_style = space
+tab_width = 2
+
+# Text :: Data :: python :: pip
+[{requirements.txt,requirements.*.txt,requirements-*.txt}]
+trim_trailing_whitespace = false
+
+# Text :: Prose :: Markdown
+[*.md]
+indent_size = 4
+indent_style = space
+tab_width = 4
+trim_trailing_whitespace = false
+
+# Text :: Prose :: ReStructuredText
+[*.rst]
+indent_size = 3
+indent_style = space
+tab_width = 3
+
+# Text :: Programming :: Shell :: Linux
+[*.{bash,sh,zsh}]
+indent_size = 2
+indent_style = tab
+tab_width = 2
+
+# Text :: Programming :: Shell :: Windows
+[*.{bat,cmd}]
+end_of_line = crlf
+indent_size = 4
+indent_style = tab
+tab_width = 4
+
+# Text :: Programming :: Shell :: Windows :: PowerShell
+[*.{ps1,psd1,psm1}]
+end_of_line = crlf
+indent_size = 4
+indent_style = tab
+tab_width = 4
+
+# Text :: Programming :: Environment
+# These function as data files but use shell-syntax
+[.{env,env.*,env-*,flaskenv,flaskenv.*,flaskenv-*}]
+indent_size = 2
+indent_style = tab
+tab_width = 2
+
+# Text :: Programming :: Dockerfile
+[Dockerfile]
+indent_size = 4
+indent_style = space
+tab_width = 4
+
+# Text :: Programming :: Python
+[*.{py,wsgi}]
+indent_size = 4
+indent_style = tab
+tab_width = 4

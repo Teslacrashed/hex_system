@@ -1,0 +1,371 @@
+# .gitattributes
+# vim: ft=gitattributes
+# Set git behaviour for files.
+# Verify settings using: 'git check-attr --all -- <pathname>'
+# -----------------------------------------------------------------------------#
+#
+# -----------------------------------------------------------------------------#
+# Git Attributes Settings
+# =======================
+#
+# https://git-scm.com/docs/gitattributes
+#
+# text auto: let git handle converting to workspace to repo.
+# text eol=<lf/crlf>: always convert line endings to specified on checkout.
+# binary: don't apply line endings, diff, or merge.
+# diff: define a diff driver external or internal.
+# diff built-ins: ada, bibtex, cpp, csharp, css, fortran, fountain, golang,
+#                 html, java, matlab, objc, pascal, perl, php, python, ruby,
+#                 rust, tex
+# -----------------------------------------------------------------------------#
+# Github Linguist Settings
+# ========================
+#
+# linguist-language : provide syntax highlighting for custom files in github
+#
+# built-in: actionscript, apache, apiblueprint applescript, awk, biml, bsl,
+#           c, cfscript, clj, cmake, coffee, elisp, conf, console, cpp,
+#           csharp, css, d, docker, dot, erb, erlang, fortran, glsl, go,
+#           gradle, graphql, groovy, haskell, hcl, ini, java, javascript,
+#           jinja, json, json-doc, llvm, lua, make, markdown, matlab, nginx,
+#           objc, pascal, perl, php, text, powershell, prometheus,
+#           properties, protobuf, puppet, python, qml, ruby, rust, scala,
+#           sed, sql, swift, terraform, tex, toml, typescript, visualbasic,
+#           xml, yaml
+#
+# special: ApacheConf - Apache configuration files
+#          conf - generic configuration files
+#          console - generic terminal shell
+#          diff - unified diffs
+#          escape - escaped content
+#          http - http req and resp
+#          shell - various shell languages
+#------------------------------------------------------------------------------#
+# Linguist Languages
+#------------------------------------------------------------------------------#
+# Text :: Data :: INI
+.flake8 linguist-language=INI
+.pylintrc linguist-language=INI
+*.cfg linguist-language=INI
+*.ini linguist-language=INI
+
+# Text :: Data :: EditorConfig
+# Similar to INI group
+.editorconfig linguist-language=EditorConfig
+
+# Text :: Data :: TOML
+# Similar to INI group
+*.tml linguist-language=TOML
+*.toml linguist-language=TOML
+
+# Text :: Data :: Ignore-List
+*.*ignore linguist-language=Ignore-List
+
+# Text :: Data
+# Serialized data formats
+*.json linguist-language=JSON
+
+*.xml linguist-language=XML
+*.ps1xml linguist-language=XML
+
+*.yaml linguist-language=YAML
+*.yml linguist-language=YAML
+
+# Text :: Data
+# Tabular data formats
+*.csv linguist-language=CSV
+*.tsv linguist-language=TSV
+
+# Text :: Markup
+*.css linguist-language=CSS
+*.html linguist-language=HTML
+*.jinja linguist-language=Jinja
+
+# Text :: Programming :: JavaScript
+*.js linguist-language=JavaScript
+
+# Text :: Programming :: Python
+*.py linguist-language=Python
+*.wsgi linguist-language=Python
+
+# Text :: Programming :: SQL
+*.sql linguist-language=SQL
+
+# Text :: Programming :: TCL
+*.htc linguist-language=TCL
+*.tcl linguist-language=TCL
+
+# Text :: Programming :: Docker
+Dockerfile linguist-language=Dockerfile
+Dockerfile.* linguist-language=Dockerfile
+Dockerfile-* linguist-language=Dockerfile
+
+# Text :: Programming :: Shell
+.env linguist-language=Shell
+.env.* linguist-language=Shell
+.env-* linguist-language=Shell
+.flaskenv linguist-language=Shell
+.flaskenv.* linguist-language=Shell
+.flaskenv-* linguist-language=Shell
+
+# Text :: Prose :: Markdown
+*.md linguist-documentation linguist-language=Markdown
+
+# Text :: Prose :: reStructuredText
+*.rst linguist-documentation linguist-language=reStructuredText
+
+#------------------------------------------------------------------------------#
+# Text Files
+#------------------------------------------------------------------------------#
+[attr]lfs       diff=lfs filter=lfs merge=lfs -text
+[attr]spaces    whitespace=space-before-tab,tabs-in-indent,trailing-space
+[attr]tabs-2    whitespace=indent-with-non-tab,space-before-tab,trailing-space,tabwidth=2
+[attr]tabs-4    whitespace=indent-with-non-tab,space-before-tab,trailing-space,tabwidth=4
+[attr]data-csv  whitespace=indent-with-non-tab,space-before-tab,trailing-space,tabwidth=4
+[attr]data-tsv  whitespace=indent-with-non-tab,space-before-tab,trailing-space,tabwidth=4
+[attr]prose-md  diff=markdown whitespace=blank-at-eof,-blank-at-eol,tab-in-indent
+[attr]prose-rst conflict-marker-size=79 whitespace=tab-in-indent,trailing-space
+[attr]vendored  -diff -merge -text -whitespace
+
+# Default line endings to linefeed
+* eol=lf
+* text=auto
+
+# Text :: Misc
+# Dotfiles can be in many formats (bash / ini / etc).
+# All of them I use I want tabs.
+.*rc text tabs-2
+
+# Text :: Data :: Ignore-List
+# dockerignore / gitignore / etc
+*.*ignore text tabs-2 export-ignore
+
+# Text :: Data :: INI
+.gitattributes text tabs-2 export-ignore
+.gitconfig text tabs-2 export-ignore
+.gitmodules text tabs-2 export-ignore
+*.cfg text tabs-2
+*.ini text tabs-2
+
+# Text :: Data :: TOML
+# Similar to INI
+*.tml text spaces
+*.toml text spaces
+
+# Text :: Data :: EditorConfig
+# Similar to INI
+.editorconfig text tabs-2 export-ignore
+
+# Text :: Data :: Serialized
+
+# Text :: Data :: JSON
+*.json text spaces
+
+# Text :: Data :: XML
+*.ps1xml text spaces
+*.xml text spaces
+
+# Text :: Data :: YAML
+*.yaml text spaces
+*.yml text spaces
+
+# Text :: Data :: Tabular
+*.csv text data-csv
+*.tsv text data-tsv
+
+# Text :: Markup :: CSS
+*.css text diff=css spaces
+# Treat source maps as binary.
+*.css.map binary -whitespace
+
+# Text :: Markup :: HTML
+*.html text diff=html spaces
+
+# Text :: Markup :: Jinja2
+*.jinja text spaces
+
+# Text :: Programming :: Dockerfile
+Dockerfile text spaces
+Dockerfile.* text spaces
+Dockerfile-* text spaces
+
+# Text :: Programming :: JavaScript
+*.js text spaces
+*.js.map binary -whitespace
+
+# Text :: Programming :: PHP
+*.php text diff=php spaces
+
+# Text :: Programming :: Python
+*.py text diff=python tabs-4
+*.wsgi text diff=python tabs-4
+
+# Text :: Programming :: Shell :: Linux
+
+# Text :: Programming :: Shell :: Bash
+.bashrc text diff=bash tabs-2
+.bash_* text diff=bash tab-2
+*.bash text diff=bash tab-2
+
+# Text :: Programming :: Shell Posix-compliant
+.login text tab-2
+.profile text tab-2
+*.sh text tab-2
+
+# Text :: Programming :: Zsh
+.zshenv text tab-2
+.zshrc text tab-2
+*.zlogin text tab-2
+*.zlogout text tab-2
+*.zprofile text tab-2
+*.zsh text tab-2
+*.zsh-theme text tab-2
+*.zsh_* text tab-2
+
+# Text :: Programming :: Shell :: Windows
+# These are explicitly windows files and should use crlf
+*.bat text eol=crlf tab-4
+*.cmd text eol=crlf tab-4
+*.ps1 text eol=crlf spaces
+*.psd1 text eol=crlf spaces
+*.psm1 text eol=crlf spaces
+
+# Text :: Programming :: Shell
+# Technically use shell syntax but act as data files
+.env text tabs-2
+.env.* text tabs-2
+.env-* text tabs-2
+.flaskenv text tabs-2
+.flaskenv.* text tabs-2
+.flaskenv-* text tabs-2
+
+# Text :: Programming :: TCL
+*.htc text tabs-4
+*.tcl text tabs-4
+
+# Text :: Prose :: Plain Text
+*.txt text
+
+AUTHORS text
+CHANGELOG text
+CHANGES text
+CONTRIBUTING text
+COPYING text
+*COPYRIGHT* text
+INSTALL text
+LICENSE text
+NEWS text
+*README* text
+TODO text
+
+# Text :: Prose :: Markdown
+*.md text prose-md
+
+# Text :: Prose :: reStructuredText
+*.rst text prose-rst
+
+# Binary :: Archives
+# It's better to unpack these files and commit the raw source because
+# git has its own built in compression methods.
+*.7z binary
+*.jar binary
+*.rar binary
+*.zip binary
+*.gz binary
+*.gzip binary
+*.tgz binary
+*.bzip binary
+*.bzip2 binary
+*.bz2 binary
+*.xz binary
+*.lzma binary
+*.cab binary
+*.xar binary
+
+# Packing-only formats
+*.iso binary
+*.tar binary
+
+# Package management formats
+# Binary :: Package Mangement :: macOS
+*.dmg binary
+
+# Binary :: Package Management :: Mozilla XPIInstall
+*.xpi binary
+
+# Binary :: Package Management :: Ruby
+*.gem binary
+
+# Binary :: Package Management :: Python
+*.egg binary
+
+# Binary :: Package Management :: Debian
+*.deb binary
+
+# Binary :: Package Management :: Red Hat
+*.rpm binary
+
+# Binary :: Package Management :: Windows
+*.msi binary
+*.msm binary
+*.msp binary
+
+# Binary :: Audio Files
+*.kar binary
+*.m4a binary
+*.mid binary
+*.midi binary
+*.mp3 binary
+*.ogg binary
+*.ra binary
+
+# Binary :: Documents
+*.doc diff=astextplain
+*.DOC diff=astextplain
+*.docx diff=astextplain
+*.DOCX diff=astextplain
+*.dot diff=astextplain
+*.DOT diff=astextplain
+*.pdf diff=astextplain
+*.PDF diff=astextplain
+*.rtf diff=astextplain
+*.RTF diff=astextplain
+
+# Binary :: Graphics Files
+# SVG treated as text by default, but rarely edited by hand.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.tif binary
+*.tiff binary
+*.ico binary
+*.svg binary
+*.eps binary
+
+# Binary :: Python
+*.pkl binary
+*.pickle binary
+*.pyc binary export-ignore
+*.pyo binary export-ignore
+*.pyd binary
+
+# Binary :: Video
+*.3gpp binary
+*.3gp binary
+*.as binary
+*.asf binary
+*.asx binary
+*.avi binary
+*.fla binary
+*.flv binary
+*.m4v binary
+*.mng binary
+*.mov binary
+*.mp4 binary
+*.mpeg binary
+*.mpg binary
+*.ogv binary
+*.swc binary
+*.swf binary
+*.webm binary

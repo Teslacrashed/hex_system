@@ -1,0 +1,18 @@
+[build-system]
+requires = [
+	"setuptools>=59.2.0",
+	"wheel>=0.37.0"
+]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_format = "[%(levelname)-8s] %(message)s"
+log_cli_level = "INFO"
+pythonpath = [
+	".",
+	"hex_system",
+]
+testpaths = [
+	"tests"
+]
