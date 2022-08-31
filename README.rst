@@ -6,6 +6,8 @@ The purpose of this library is to build and test the central building blocks nee
 
 No UI implementations are done, everything strictly deals in the math-space.
 
+All code assumes hexes are pointy-topped and that the grid is odd-row rectangles.
+
 Advice
 ======
 
@@ -17,7 +19,7 @@ Geometry mainly deals with screen / pixel representations of objects, which is u
    - Drawing objects to the screen
    - Getting pixel coordinates and translationg them to coordiate-friendly postions.
 
-Coordinates mainly deal with turning pixel-based positions and turning them into easier and cleaner to use math for hexagons.
+Coordinates deal with cleaner methods of identifying and grabbing hexes on grids.
 
 Geometry:
    - Points

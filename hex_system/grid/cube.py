@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # vim: ft=python
-"""coordinates.py."""
-from dataclasses import (
-	dataclass
-)
+"""grid/cube.py."""
 from config import Number
 from loggers import get_logger
 from typing import (
@@ -14,104 +11,17 @@ from typing import (
 	Tuple
 )
 
-__all__ = ['Cube', 'Offset']
-
-
-@dataclass
-class Offset:
-	"""Create x, y coordinates.
-
-	col = horizontal
-	row = vertical
-	"""
-	__slots__ = ('col', 'row')
-	col: int
-	row: int
-
-	def __init__(self, col: int, row: int) -> None:
-		self.col = col
-		self.row = row
-		return
-
-	def __repr__(self) -> str:
-		return f"<{self.__class__.__name__}(col: {self.col}, row: {self.row})>"
-
-	def __str__(self) -> str:
-		return f"{self.__class__}({self.col}, {self.row})"
-
-	def __hash__(self) -> int:
-		"""
-		.. note:: Maybe 31 * hash(self.col) + hash(self.row)
-		:return: a unique hash
-		"""
-		return hash((self.col, self.row))
-
-	def __eq__(self, other) -> bool:
-		if isinstance(other, Offset):
-			return self.col == other.col and self.row == other.row
-		else:
-			raise TypeError('Other object is not an Offset')
-
-	def __ne__(self, other) -> bool:
-		if isinstance(other, Offset):
-			return not self.__eq__(other)
-		else:
-			raise TypeError('Other object is not an Offset')
-
-	def __lt__(self, other) -> bool:
-		if isinstance(other, Offset):
-			return self.col < other.col and self.row < other.row
-		else:
-			raise TypeError('Other object is not an Offset')
-
-	def __gt__(self, other) -> bool:
-		if isinstance(other, Offset):
-			return self.col > other.col and self.row > other.row
-		else:
-			raise TypeError('Other object is not an Offset')
-
-	def __add__(self, other):
-		if isinstance(other, Offset):
-			return Offset(self.col + other.col, self.row + other.row)
-		else:
-			raise TypeError(f'Unable to add {other}')
-
-	def __sub__(self, other):
-		if isinstance(other, Offset):
-			return Offset(self.col - other.col, self.row - other.row)
-		else:
-			raise TypeError(f'Unable to subtract {other}')
-
-	def __iter__(self) -> Iterator[int]:
-		return iter((self.col, self.row))
-
-	def __setattr__(self, key, value) -> None:
-		object.__setattr__(self, key, value)
-		return
-
-	def __getitem__(self, item) -> int:
-		return self.list[item]
-
-	def __setitem__(self, key, value) -> None:
-		self.list[key] = value
-		return
-
-	def __len__(self) -> int:
-		return len(self.list)
-
-	@property
-	def list(self) -> List[int]:
-		return [self.col, self.row]
+__all__ = ['Cube']
 
 
 class Cube:
 
-	def __new__(cls, q: Number, r: Number, s: Number):
+	def __new__(cls, q: int, r: int, s: int):
 		if q + r + s != 0:
 			raise ValueError(f"Attributes 'q', 'r', 's' must have a sum of 0, not {q + r + s}")
 		return super().__new__(cls)
 
-	def __init__(self, q: Number, r: Number, s: Number) -> None:
+	def __init__(self, q: int, r: int, s: int) -> None:
 		"""Initialize a new Cube coordinate.
 
 		.. note:: To be lenient we accept floats and turn them into ints, but only if they pass the new validation.
@@ -120,13 +30,14 @@ class Cube:
 		:param r: Axes two.
 		:param s: Axes three.
 		"""
-		self.q: int = int(q)
-		self.r: int = int(r)
-		self.s: int = int(s)
+		self._q: int = q
+		self._r: int = r
+		self._s: int = s
+
 		return
 
 	def __str__(self) -> str:
-		return f"({self.q}, {self.r}, {self.s})"
+		return f"{self.__class__.__name__}({self.q}, {self.r}, {self.s})"
 
 	def __repr__(self) -> str:
 		return f"<{self.__class__.__name__}(x: {self.q}, y: {self.r}, s: {self.s})>"
@@ -161,7 +72,7 @@ class Cube:
 		return False
 
 	def __hash__(self) -> int:
-		return hash((self.s, self.r, self.s))
+		return hash(self.qrs)
 
 	def __add__(self, other):
 		return Cube(self.q + other.q, self.r + other.r, self.s + other.s)
@@ -179,6 +90,22 @@ class Cube:
 
 	def __getitem__(self, idx: int) -> int:
 		return self.qrs[idx]
+
+	@property
+	def q(self) -> int:
+		return self._q
+
+	@property
+	def r(self) -> int:
+		return self._r
+
+	@property
+	def s(self) -> int:
+		return self._s
+
+	@property
+	def qr(self) -> Tuple[int, int]:
+		return self.q, self.r
 
 	@property
 	def qrs(self) -> Tuple[int, int, int]:

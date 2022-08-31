@@ -65,9 +65,6 @@
 # Serialized data formats
 *.json linguist-language=JSON
 
-*.xml linguist-language=XML
-*.ps1xml linguist-language=XML
-
 *.yaml linguist-language=YAML
 *.yml linguist-language=YAML
 
@@ -76,29 +73,8 @@
 *.csv linguist-language=CSV
 *.tsv linguist-language=TSV
 
-# Text :: Markup
-*.css linguist-language=CSS
-*.html linguist-language=HTML
-*.jinja linguist-language=Jinja
-
-# Text :: Programming :: JavaScript
-*.js linguist-language=JavaScript
-
 # Text :: Programming :: Python
 *.py linguist-language=Python
-*.wsgi linguist-language=Python
-
-# Text :: Programming :: SQL
-*.sql linguist-language=SQL
-
-# Text :: Programming :: TCL
-*.htc linguist-language=TCL
-*.tcl linguist-language=TCL
-
-# Text :: Programming :: Docker
-Dockerfile linguist-language=Dockerfile
-Dockerfile.* linguist-language=Dockerfile
-Dockerfile-* linguist-language=Dockerfile
 
 # Text :: Programming :: Shell
 .env linguist-language=Shell
@@ -161,10 +137,6 @@ Dockerfile-* linguist-language=Dockerfile
 # Text :: Data :: JSON
 *.json text spaces
 
-# Text :: Data :: XML
-*.ps1xml text spaces
-*.xml text spaces
-
 # Text :: Data :: YAML
 *.yaml text spaces
 *.yml text spaces
@@ -173,32 +145,8 @@ Dockerfile-* linguist-language=Dockerfile
 *.csv text data-csv
 *.tsv text data-tsv
 
-# Text :: Markup :: CSS
-*.css text diff=css spaces
-# Treat source maps as binary.
-*.css.map binary -whitespace
-
-# Text :: Markup :: HTML
-*.html text diff=html spaces
-
-# Text :: Markup :: Jinja2
-*.jinja text spaces
-
-# Text :: Programming :: Dockerfile
-Dockerfile text spaces
-Dockerfile.* text spaces
-Dockerfile-* text spaces
-
-# Text :: Programming :: JavaScript
-*.js text spaces
-*.js.map binary -whitespace
-
-# Text :: Programming :: PHP
-*.php text diff=php spaces
-
 # Text :: Programming :: Python
 *.py text diff=python tabs-4
-*.wsgi text diff=python tabs-4
 
 # Text :: Programming :: Shell :: Linux
 
@@ -238,10 +186,6 @@ Dockerfile-* text spaces
 .flaskenv text tabs-2
 .flaskenv.* text tabs-2
 .flaskenv-* text tabs-2
-
-# Text :: Programming :: TCL
-*.htc text tabs-4
-*.tcl text tabs-4
 
 # Text :: Prose :: Plain Text
 *.txt text

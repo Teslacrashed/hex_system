@@ -53,16 +53,6 @@ MANIFEST
 pip-delete-this-directory.txt
 pip-log.txt
 
-# Python :: Flask
-# Instance is only commented out for example purposes
-# Always hide instance because it contains your sensitive configuration settings
-# Project does not use instance folder, kept for posterity
-instance/
-.webassets-cache
-
-# Python :: pyenv
-.python-version
-
 # Python :: pytest
 .pytest_cache/
 
@@ -78,11 +68,6 @@ docs/_build/
 .env-*
 !.env.example
 !.env-example
-.flaskenv
-.flaskenv.*
-.flaskenv-*
-!.flaskenv.example
-!.flaskenv-example
 
 # C/C++ shared object library files
 *.so

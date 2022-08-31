@@ -1,11 +1,6 @@
 #!/usr/bin/env python
 # vim: ft=python
-"""logger.py.
-
- def format(self, record):
-        fmt = super().format(record)
-        return self.color_formats[record.levelno].format(fmt)
-"""
+"""loggers.py."""
 from copy import deepcopy
 import datetime
 import time
@@ -44,7 +39,7 @@ EXC_INFO_TYPE = Tuple[
 	Optional[TracebackType],  # traceback
 ]
 
-# Very specific exception list, for exceptions that should close python.
+# Very specific exception list, for exceptions that should exit python.
 FATAL_EXCEPTIONS: List[Type[BaseException]] = [KeyboardInterrupt, SystemExit]
 
 _DEFAULT_LOG_LEVEL = logging.DEBUG if __debug__ else logging.INFO  # '-O' works like a '-q'

@@ -62,6 +62,7 @@ class Hexagon:
 	ANGLE_DEGREES: List[int] = [270, -30, 30, 90, 150, 210]
 	# List comprehension to dynamically create Hex's radians based on the `ANGLE_DEGREES` list.
 	ANGLE_RADIANS: List[float] = [math.radians(degree) for degree in ANGLE_DEGREES]
+	ORIENTATION: str = 'pointy-top'
 
 	def __init__(self, point: Point) -> None:
 		self._center: Point = point

@@ -15,9 +15,6 @@ PathType = Union[str, PathLike]
 # This goes up two directories to the root of the project/repo folder.
 PROJECT_DIR: Path = Path(__file__).parent.parent.absolute()
 
-ASSETS_DIR: Path = PROJECT_DIR / 'assets'
-ASSETS_DIR.mkdir(exist_ok=True)
-
 LOG_DIR: Path = PROJECT_DIR / 'logs'
 LOG_DIR.mkdir(exist_ok=True)
 
@@ -29,9 +26,6 @@ TIMEZONE_LOCAL: str = 'America/Chicago'
 TIMEZONE_UTC: str = 'Etc/UTC'
 TZ_LOCAL: ZoneInfo = ZoneInfo(TIMEZONE_LOCAL)
 TZ_UTC: ZoneInfo = ZoneInfo(TIMEZONE_UTC)
-
-# LOCAL_TZ = datetime.now().astimezone().tzinfo
-# utc = lambda: time.time_ns() / 1e9
 
 DEFAULT_TZ: ZoneInfo = TZ_LOCAL
 

@@ -17,16 +17,11 @@ from loggers import get_logger
 __all__ = ['Point']
 
 
-@dataclass
 class Point:
 	"""
 	The x-axis (horizontal) abscissa
 	The y-axis (vertical) ordinate
 	"""
-
-	#__slots__ = 'x', 'y'
-	#x: Number
-	#y: Number
 
 	def __init__(self, x: Number, y: Number) -> None:
 		self._x = x

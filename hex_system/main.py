@@ -7,7 +7,13 @@ from loggers import get_logger
 from geometry import Line
 from geometry import Point
 
+from grid import (
+	Cube,
+	HexCell
+)
+
 LOG = get_logger(__name__)
+
 
 def test_err():
 	try:
@@ -21,25 +27,12 @@ def main() -> None:
 
 	# hex_grid = HexGrid(2, 2)
 	# LOG.info(f"<hex_grid: {hex_grid}>.")
+	cube_1 = Cube(1, 1, -2)
+	cube_2 = Cube(1, 2, -3)
 
-	point_a = Point(-1, -1)
-	point_b = Point(0, 0)
+	hexcell = HexCell(cube_1)
 
-	point_1 = Point(1, 1)
-	point_2 = Point(2, 2)
-
-	line_1 = Line(point_1, point_2)
-	line_2 = Line(point_1, point_2)
-
-	LOG.info(f"<line: {line_1}>.")
-
-	LOG.info(f"<line: {type(line_1.origin)}>.")
-	LOG.info(f"<line: {type(line_1.end)}>.")
-
-	if line_1 == line_2:
-		LOG.info('line_1 is equal to line_2')
-	else:
-		LOG.info('line_1 is NOT equal to line_2')
+	LOG.info(f"<hexcell: {hexcell}>.")
 
 	LOG.info('.', type='END')
 	return
