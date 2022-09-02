@@ -10,26 +10,46 @@ from geometry import Point
 def test_point_init() -> None:
 	"""Test the initialization of Vector2D objects and basic properties."""
 	point = Point(0, 2)
-	# str(vec)  # test the string representation of the vector
 
 	assert point.x == 0
 	assert point.y == 2
 	assert point[0] == 0
 	assert point[1] == 2
-	# assert point.magnitude == 2
-	# assert point.magnitude_squared == 4
-	# assert not vec.is_zero(0.0000001)
 
 	assert len(point) == 2
-	point_tuple = tuple(i for i in point)
-	assert point_tuple == (0, 2)
-
-	# norm_vec = vec.normalize()
-	# assert norm_vec.x == 0
-	# assert norm_vec.y == 1
-	# assert norm_vec.magnitude == 1
+	generated_tuple = tuple(i for i in point)
+	assert generated_tuple == (0, 2)
 
 	return
+
+
+def test_point_x_is_readonly() -> None:
+	point = Point(2, 4)
+	with pytest.raises(AttributeError):
+		point.x = 3
+	return
+
+def test_point_y_is_readonly() -> None:
+	point = Point(2, 4)
+	with pytest.raises(AttributeError):
+		point.y = 3
+	return
+
+def test_point_equality() -> None:
+	p = Point(1, 1)
+	r = Point(1, 1)
+	assert p == r and p is not r
+	return
+
+def test_point_inequality() -> None:
+	p = Point(2, 2)
+	r = Point(1, 1)
+	assert p != r and p is not r
+
+
+def test_point_eq() -> None:
+	point = Point(0, 0)
+	assert None != point
 
 
 def test_point_iterate() -> None:
@@ -38,6 +58,17 @@ def test_point_iterate() -> None:
 	assert (x, y) == (1, 2)
 	return
 
+
+def test_points_are_sortable() -> None:
+	starting_list = [Point(2, 2), Point(1, 2), Point(2, 1), Point(1, 1)]
+	sorted_list = sorted(starting_list)
+	assert sorted_list == [Point(1, 1), Point(1, 2), Point(2, 1), Point(2, 2)]
+	return
+
+def test_points_distance() -> None:
+	# Check distance between two points.
+	# assert(cc.Point(0.0, 0.0).distance(cc.Point(1.0, 1.0)) == pytest.approx(math.sqrt(2.0)))
+	return
 
 
 left: int = -1
@@ -76,5 +107,3 @@ def test_point_compare(x0: Number, y0: Number, x1: Number, y1: Number) -> None:
 		assert (Point(x0, y0) >= Point(x1, y1)) is True
 
 	return
-
-

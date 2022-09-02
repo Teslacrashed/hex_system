@@ -27,12 +27,21 @@ def main() -> None:
 
 	# hex_grid = HexGrid(2, 2)
 	# LOG.info(f"<hex_grid: {hex_grid}>.")
-	cube_1 = Cube(1, 1, -2)
-	cube_2 = Cube(1, 2, -3)
+	#cube_1 = Cube(1, 1, -2)
+	#cube_2 = Cube(1, 2, -3)
+	#hexcell = HexCell(cube_1)
+	#LOG.info(f"<hexcell: {hexcell}>.")
 
-	hexcell = HexCell(cube_1)
+	first = 2, 2
+	second = 2, 1
+	fourth = 1, 2
+	third = 1, 1
 
-	LOG.info(f"<hexcell: {hexcell}>.")
+	aset = [first, second, third, fourth]
+
+	asort = sorted(aset)
+
+	LOG.info(f"<asort: {asort}>.")
 
 	LOG.info('.', type='END')
 	return

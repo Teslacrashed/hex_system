@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 # vim: ft=python
 """tests/confest.py."""
+import logging
 import pytest
 
 from geometry import Point
+
+LOG = logging.getLogger()
 
 
 @pytest.fixture
