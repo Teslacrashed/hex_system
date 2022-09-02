@@ -32,16 +32,8 @@ def main() -> None:
 	#hexcell = HexCell(cube_1)
 	#LOG.info(f"<hexcell: {hexcell}>.")
 
-	first = 2, 2
-	second = 2, 1
-	fourth = 1, 2
-	third = 1, 1
-
-	aset = [first, second, third, fourth]
-
-	asort = sorted(aset)
-
-	LOG.info(f"<asort: {asort}>.")
+	point1 = Point(1, 1)
+	LOG.info(f"<point1: {point1}>.")
 
 	LOG.info('.', type='END')
 	return

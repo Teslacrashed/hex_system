@@ -36,40 +36,94 @@ class Point:
 		return f"{self.__class__.__name__}({self.x}, {self.y})"
 
 	def __lt__(self, other) -> bool:
+		"""Handle less than comparator.
+
+		`self` < `other`
+
+		:param other: The Point to be evaluated.
+		:type other: Point
+		:return: True if self is less than target.
+		:rtype: bool
+		"""
 		if self.__class__ == other.__class__:
 			return self.y < other.y if self.x == other.x else self.x < other.x
 		else:
 			raise TypeError()
 
 	def __le__(self, other) -> bool:
+		"""Handle less than or equal comparator.
+
+		`self` <= `other`
+
+		:param other: The Point to be evaluated.
+		:type other: Point
+		:return: True if self is less than or equal to target.
+		:rtype: bool
+		"""
 		if self.__class__ == other.__class__:
 			return self.y <= other.y if self.x == other.x else self.x < other.x
 		else:
 			raise TypeError()
 
 	def __eq__(self, other) -> bool:
+		"""Handle equal to comparator.
+
+		`self` == `other`
+
+		:param other: The Point to be evaluated.
+		:type other: Point
+		:return: True if self is equal to the target.
+		:rtype: bool
+		"""
 		if self.__class__ == other.__class__:
 			return (self.x == other.x) and (self.y == other.y)
-		elif other == None:
+		elif other is None:
 			return False
 		else:
 			raise TypeError()
 
 	def __ne__(self, other) -> bool:
+		"""Handle not equal to comparator.
+
+		`self` != `other`
+
+		:param other: The Point to be evaluated.
+		:type other: Point
+		:return: True if self is less than target.
+		:rtype: bool
+		"""
 		if self.__class__ == other.__class__:
 			return not self.__eq__(other)
-		elif other == None:
+		elif other is None:
 			return True
 		else:
 			raise TypeError()
 
 	def __gt__(self, other) -> bool:
+		"""Handle greater than comparator.
+
+		`self` > `other`
+
+		:param other: The Point to be evaluated.
+		:type other: Point
+		:return: True if self is greater than target.
+		:rtype: bool
+		"""
 		if self.__class__ == other.__class__:
 			return self.y > other.y if self.x == other.x else self.x > other.x
 		else:
 			raise TypeError()
 
 	def __ge__(self, other) -> bool:
+		"""Handle greater than or equal to comparator.
+
+		`self` >= `other`
+
+		:param other: The Point to be evaluated.
+		:type other: Point
+		:return: True if self is greater than or equal to target.
+		:rtype: bool
+		"""
 		if self.__class__ == other.__class__:
 			return self.y >= other.y if self.x == other.x else self.x > other.x
 		else:
@@ -81,11 +135,18 @@ class Point:
 		In order to put an item into a set, it needs to be hashable.
 		To make an object hashable, it must meet the consistency requirement:
 			a == b must imply hash(a) == hash(b)
+
+		:return: An integer as a representation of the Point's hash.
+		:rtype: int
 		"""
 		return hash((self.x + self.y))
 
 	def __bool__(self) -> bool:
-		"""A boolean indicating if this point is defined."""
+		"""A boolean indicating if this point is defined.
+
+		:return: True most any case where the Point exists due to validation checks.
+		:rtype: bool
+		"""
 		return self.x is not None and self.y is not None
 
 	def __len__(self) -> int:
@@ -106,7 +167,8 @@ class Point:
 		yield from (self.y, self.x)
 
 	def __contains__(self, item):
-		return self.x == item or self.y == item
+		"""Not appropriate for Point."""
+		raise NotImplementedError()
 
 	def __neg__(self):
 		return self.__class__(-self.x, -self.y)

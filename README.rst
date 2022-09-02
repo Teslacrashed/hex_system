@@ -4,9 +4,18 @@ README
 
 The purpose of this library is to build and test the central building blocks needed for making Hexagonal Grids.
 
-No UI implementations are done, everything strictly deals in the math-space.
+At current this code isn't very useable in a traditional way.
+
+I tend to import new bits into main.py and prototype new code.
+
+Eventually I flesh that code out into a module, and am trying to get better about using tests.
+
+Test cases are slowly being added as I confirm things are accurate.
 
 All code assumes hexes are pointy-topped and that the grid is odd-row rectangles.
+
+This is a side-project of mine and won't be updated in any stable way for the time being
+so expect drastic changes from any update until this project is declared stable.
 
 Advice
 ======
