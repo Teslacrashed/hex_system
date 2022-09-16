@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 # vim: ft=python
 """config.py."""
+# Standard Library
 import math
+from datetime import tzinfo
+from os import PathLike
 from pathlib import Path
 from typing import Union
-from os import PathLike
-from datetime import tzinfo
 from zoneinfo import ZoneInfo
+
 
 # Values used for common typing
 Number = Union[float, int]

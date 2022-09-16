@@ -1,37 +1,40 @@
 #!/usr/bin/env python
 # vim: ft=python
 """loggers.py."""
-from copy import deepcopy
+# Standard Library
 import datetime
-import time
 import logging
+import time
+from copy import deepcopy
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
 from sys import (
+	stderr,
 	stdout,
-	stderr
 )
 from types import TracebackType
 from typing import (
 	Any,
 	Dict,
-	Optional,
 	List,
 	MutableMapping,
+	Optional,
 	TextIO,
 	Tuple,
 	Type,
 	TypeVar,
-	Union
+	Union,
 )
 from zoneinfo import ZoneInfo
 
+# App
 from config import (
+	DEFAULT_TZ,
 	ENCODING,
 	LOG_DIR,
-	DEFAULT_TZ,
-	PathType
+	PathType,
 )
+
 
 EXC_INFO_TYPE = Tuple[
 	Optional[Type[BaseException]],  # type

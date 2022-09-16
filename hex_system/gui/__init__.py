@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # vim: ft=python
 """gui/__init__.py."""
-from gui import App
+# App
+from gui.gui import get_app
 
-__all__ = ['App']
+
+__all__ = ['get_app']

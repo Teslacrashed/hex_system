@@ -1,13 +1,24 @@
 #!/usr/bin/env python
 # vim: ft=python
 """geometry/rectangle.py."""
+# Standard Library
 from dataclasses import dataclass
-from typing import Tuple
+from typing import (
+	Any,
+	Dict,
+	Tuple,
+)
 
-from config import Number
+# First Party Library
 from geometry.point import Point
+
+# App
+from config import Number
 from loggers import get_logger
 from utils import round_to_int
+
+
+__all__ = ['Rectangle']
 
 
 @dataclass
@@ -111,6 +122,15 @@ class Rectangle:
 	@property
 	def midpoint(self) -> Point:
 		return Point(self.width / 2, self.height / 2)
+
+	@property
+	def to_dict(self) -> Dict[str, Any]:
+		stats= {
+			'origin': self.origin,
+			'end': self.end,
+			'size': self.size
+		}
+		return stats
 
 	def contains(self, point: Point) -> bool:
 		"""Return true if a point is inside the rectangle."""

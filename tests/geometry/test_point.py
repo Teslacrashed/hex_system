@@ -1,10 +1,14 @@
 #!/usr/bin/env python
 # vim: ft=python
 """tests/geometry/test_point.py."""
+# Third Party Library
 import pytest
 
-from config import Number
+# First Party Library
 from geometry import Point
+
+# App
+from config import Number
 
 
 def test_point_init() -> None:

@@ -1,18 +1,20 @@
 #!/usr/bin/env python
 # vim: ft=python
 """coordinates.py."""
-from dataclasses import (
-	dataclass
+# Standard Library
+from dataclasses import dataclass
+from typing import (
+	Generator,
+	Iterator,
+	List,
+	NamedTuple,
+	Tuple,
 )
+
+# App
 from config import Number
 from loggers import get_logger
-from typing import (
-	Iterator,
-	Generator,
-	NamedTuple,
-	List,
-	Tuple
-)
+
 
 __all__ = ['Cube', 'Offset']
 

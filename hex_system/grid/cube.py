@@ -1,15 +1,19 @@
 #!/usr/bin/env python
 # vim: ft=python
 """grid/cube.py."""
+# Standard Library
+from typing import (
+	Generator,
+	Iterator,
+	List,
+	NamedTuple,
+	Tuple,
+)
+
+# App
 from config import Number
 from loggers import get_logger
-from typing import (
-	Iterator,
-	Generator,
-	NamedTuple,
-	List,
-	Tuple
-)
+
 
 __all__ = ['Cube']
 
@@ -19,7 +23,7 @@ class Cube:
 	def __new__(cls, q: int, r: int, s: int):
 		if q + r + s != 0:
 			raise ValueError(f"Attributes 'q', 'r', 's' must have a sum of 0, not {q + r + s}")
-		return super().__new__(cls)
+		return super().__new__(cls, q, r, s)
 
 	def __init__(self, q: int, r: int, s: int) -> None:
 		"""Initialize a new Cube coordinate.
@@ -87,6 +91,11 @@ class Cube:
 			return Cube(self.q * k, self.r * k, self.s * k)
 		else:
 			raise ValueError("Cube multiplier must be Cube or scalar")
+
+	def __iter__(self):
+		yield self.q
+		yield self.r
+		yield self.s
 
 	def __getitem__(self, idx: int) -> int:
 		return self.qrs[idx]

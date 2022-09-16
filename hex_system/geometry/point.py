@@ -1,18 +1,21 @@
 #!/usr/bin/env python
 # vim: ft=python
 """geometry/point.py."""
-from dataclasses import dataclass
+# Standard Library
 import math
+from dataclasses import dataclass
 from typing import (
 	Any,
 	Generator,
 	List,
 	Tuple,
-	Union
+	Union,
 )
 
+# App
 from config import Number
 from loggers import get_logger
+
 
 __all__ = ['Point']
 
@@ -238,6 +241,9 @@ class Point:
 		""" PointA / scalar integer division operator. """
 		return self.__class__(self.x // scalar, self.y // scalar)
 
+	def __pow__(self, modulo):
+		return self.__class__(self.x ** modulo, self.y ** modulo)
+
 	def __lshift__(self, other):
 		if other % 2:
 			return self.__reversed__()
@@ -249,7 +255,6 @@ class Point:
 			return self.__reversed__()
 		else:
 			return self
-
 
 	@property
 	def x(self) -> Number:
@@ -273,6 +278,13 @@ class Point:
 		"""Get the length / magnitude."""
 		return (self.x * self.x) + (self.y * self.y)
 
+	def dot(self, other) -> float:
+		if self.__class__ == other.__class__:
+			return (self.x * other.x) + (self.y * other.y)
+
+	def norm(self, p: int = 2) -> float:
+		return ((self.x ** p) + (self.y ** p)) ** (1.0 / p)
+
 	@property
 	def radius(self) -> Number:
 		"""The distance from this point to the origin (0, 0)."""
@@ -281,7 +293,7 @@ class Point:
 	@property
 	def radians(self) -> Number:
 		"""The angle in radians measured counter-clockwise from 3 o'clock."""
-		return math.atan2(self.x, self.y)
+		return math.atan2(self.y, self.x)
 
 	@property
 	def degrees(self) -> Number:
@@ -296,8 +308,18 @@ class Point:
 	def angle(self) -> Number:
 		return (math.atan2(self.x, -self.y) + math.pi * 2) % (math.pi * 2)
 
-	def polar(self):
-		return self.length, self.degrees
+	def polar_radians(self) -> Tuple[float, float]:
+		"""Polar coordinates tuple: (R, ϴ).
+		R is the distance from the origin to this point.
+		ϴ is the angle (radians) measured counter-clockwise from 3 o'clock.
+		"""
+
+	def polar_degrees(self) -> Tuple[float, float]:
+		"""Polar coordinates tuple: (R, ϴ).
+		R is the distance from the origin to this point.
+		ϴ is the angle (degrees) measured counter-clockwise from 3 o'clock.
+		"""
+		return self.radius, self.degrees
 
 	def dot(self, other) -> Number:
 		if self.__class__ == other.__class__:
